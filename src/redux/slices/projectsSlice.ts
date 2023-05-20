@@ -4,16 +4,16 @@ import {addTask, deleteTask, updateTask} from "./tasksSlice";
 import {addSprint, deleteSprint, removeTaskFromSprint, updateSprint} from "./sprintsSlice";
 
 interface InitialState {
-    project: Project[]
+    projects: Project[]
 }
 
 const initialState: InitialState = {
-    project: []
+    projects: []
 }
 
 const projectsSlice = createSlice({
     name: 'projects',
-    initialState: initialState.project,
+    initialState: initialState.projects,
     reducers: {
         addProject: (state, action: PayloadAction<Project>) => {
             state.push(action.payload)

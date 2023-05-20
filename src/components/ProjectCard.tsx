@@ -1,29 +1,34 @@
 import React from 'react';
 import {Card, CardActionArea, CardContent, Typography} from "@mui/material";
 
-interface ITaskProps {
-    title: string;
-    description: string;
-    timestamp: string;
-    estimation: string;
+interface IProjectCardProps {
+    id:string,
+
+    title: string,
+    description: string,
+    timestamp: string,
 }
 
-const Task = ({title, description, timestamp, estimation}: ITaskProps) => {
+const ProjectCard = ({description, timestamp, title, id}: IProjectCardProps) => {
     return (
         <Card>
             <CardActionArea>
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
+                        Title:
                         {title}
                     </Typography>
                     <Typography variant="body2" color="textSecondary" component="p">
+                        Description:
                         {description}
                     </Typography>
-                    <Typography variant="caption" color="textSecondary">
+                    <Typography variant="body2" color="textSecondary">
+                        Timestamp:
                         {timestamp}
                     </Typography>
                     <Typography variant="caption" color="textSecondary">
-                        {estimation}
+                        Id:
+                        {id}
                     </Typography>
                 </CardContent>
             </CardActionArea>
@@ -31,4 +36,4 @@ const Task = ({title, description, timestamp, estimation}: ITaskProps) => {
     );
 };
 
-export default Task;
+export default ProjectCard;
