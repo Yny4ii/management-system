@@ -3,7 +3,7 @@ export interface Task {
     title: string;
     description: string;
     timestamp: string;
-    storyPoint: string;
+    estimation: string;
     projectId: string;
     sprintId?: string;
 }

@@ -34,7 +34,7 @@ function HomePage() {
 
     return (
         <Container maxWidth="lg" style={{marginTop: '2rem'}}>
-            <ProjectForm onSubmit={handleProjectFormSubmit}/>
+            <ProjectForm onSubmit={handleProjectFormSubmit} type='project'/>
             <Grid container spacing={3}>
                 <Grid item xs={12}>
                     <form onSubmit={handleSearchSubmit} style={{display: 'flex', marginTop: '1rem'}}>
@@ -46,7 +46,7 @@ function HomePage() {
                 </Grid>
                 {filteredProjects.map(project => (
                     <Grid item xs={12} sm={6} md={4} key={project.id}>
-                        <Link to={`/project/:${project.id}`}>
+                        <Link to={`/project/${project.id}`}>
                             <ProjectCard description={project.description} title={project.title}
                                          timestamp={project.timestamp} id={project.id}/>
                         </Link>
