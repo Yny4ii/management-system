@@ -45,7 +45,7 @@ const ProjectForm = ({onSubmit, type}: IProjectFormProps) => {
                 required
                 {...register("timestamp")}
             />{
-           type === 'task' && (<RadioGroup row name="estimation">
+            type === 'task' && (<RadioGroup row name="estimation">
                 <FormControlLabel
                     value="1"
                     control={
