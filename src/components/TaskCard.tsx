@@ -19,10 +19,10 @@ const TaskCard = ({title, description, timestamp, estimation}: ITaskProps) => {
                     <Typography variant="body2" color="textSecondary" component="p">
                         {description}
                     </Typography>
-                    <Typography variant="caption" color="textSecondary">
+                    <Typography color="textSecondary">
                         {timestamp}
                     </Typography>
-                    <Typography variant="caption" color="textSecondary">
+                    <Typography color="textSecondary">
                         {estimation}
                     </Typography>
                 </CardContent>
