@@ -3,7 +3,7 @@ import {useForm} from "react-hook-form";
 
 
 interface ITaskFormProps {
-    onSubmit: (date: IFormValues) => void;
+    onSubmit: (data: IFormValues) => void;
 }
 
 export interface IFormValues {

@@ -14,11 +14,10 @@ interface IEditProjectModalProps {
     open: boolean;
     project: Project;
     handleCloseProjectModal: () => void;
-    onSubmit: (date: Project) => void;
+    onSubmit: (data: Project) => void;
 }
 
 const EditProjectModal = ({project, open, handleCloseProjectModal, onSubmit}: IEditProjectModalProps) => {
-    console.log(project)
 
     const form = useForm<IFormValues>({
         defaultValues: {
@@ -29,8 +28,8 @@ const EditProjectModal = ({project, open, handleCloseProjectModal, onSubmit}: IE
     })
 
     const {register, handleSubmit} = form;
-    const handleSave = (date: IEditProjectModalValues) => {
-        const updatedProject = {...project, title: date.title, description: date.description, timestamp: date.timestamp}
+    const handleSave = (data: IEditProjectModalValues) => {
+        const updatedProject = {...project, title: data.title, description: data.description, timestamp: data.timestamp}
         onSubmit(updatedProject)
         handleCloseProjectModal()
     }
