@@ -116,8 +116,8 @@ const projectsSlice = createSlice({
                 }
             },
             deleteSprint: (state, action) => {
-                const sprintId = action.payload.id;
-                const projectIndex = state.findIndex((project) => project.sprints.some((sprint) => sprint.id === sprintId));
+                const {sprintId, projectId} = action.payload;
+                const projectIndex = state.findIndex((project) => project.id === projectId)
                 if (projectIndex !== -1) {
                     state[projectIndex].sprints = state[projectIndex].sprints.filter((sprint) => sprint.id !== sprintId);
                 }

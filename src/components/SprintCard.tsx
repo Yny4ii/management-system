@@ -25,7 +25,7 @@ const SprintCard = ({sprint, projectId}: ISprintCardProps) => {
     }
 
     const handleDeleteSprint = () => {
-        dispatch(deleteSprint(sprint.id))
+        dispatch(deleteSprint({sprintId:sprint.id, projectId}))
     }
 
     return (
