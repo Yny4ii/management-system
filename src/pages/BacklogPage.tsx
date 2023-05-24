@@ -5,7 +5,7 @@ import {useParams} from "react-router-dom";
 import TaskCard from "../components/TaskCard";
 import {IFormValues} from "../components/ProjectForm";
 import {useAppDispatch, useAppSelector} from "../hooks/hooks";
-import {addTask} from "../redux/slices/tasksSlice";
+import {addTask} from "../redux/slices/projectsSlice";
 
 const BacklogPage = () => {
     const {projectId} = useParams();
@@ -29,8 +29,8 @@ const BacklogPage = () => {
         setTasks(sortedTasks)
     }, [project, sortType])
 
-    const handleTaskFormSubmit = (date: IFormValues) => {
-        const task = {...date, id: Math.random().toString(), projectId: projectId}
+    const handleTaskFormSubmit = (data: IFormValues) => {
+        const task = {...data, id: Math.random().toString(), projectId: projectId}
         dispatch(addTask(task))
     }
 
@@ -54,8 +54,7 @@ const BacklogPage = () => {
                 {
                     tasks.sort(sortTasks).map(task => (
                         <Grid key={task.id} item xs={12} sm={6} md={4}>
-                            <TaskCard timestamp={task.timestamp} title={task.title} estimation={task.estimation}
-                                      description={task.description}/>
+                            <TaskCard task={task}/>
                         </Grid>
                     ))
                 }
