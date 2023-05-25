@@ -12,9 +12,14 @@
   "cardTitle" : "Название",
   "cardDescription" : "Описание",
   "cardTimestamp": "Срок",
+  "cardEstimation": "Сложность",
   "editProjectFormTitle" : "Редактирование проекта",
   "editTaskFormTitle" : "Редактирование задачи",
   "editSprintFormTitle" : "Редактирование спринта",
-  "moveTaskFormTitle" : "Переместить задачу"
+  "moveTaskFormTitle" : "Переместить задачу",
+  "inputSortBy" : "Сортировать по:",
+  "inputSortByDate" : "Дата",
+  "inputSortByTitle" : "Название",
+  "inputSortByEstimation" : "Сложность"
 
 }

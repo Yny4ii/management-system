@@ -44,15 +44,19 @@ const TaskCard = ({task}: ITaskProps) => {
             <Card>
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
+                        {t('cardTitle')}:
                         {task.title}
                     </Typography>
                     <Typography variant="body2" color="textSecondary" component="p">
+                        {t('cardDescription')}:
                         {task.description}
                     </Typography>
                     <Typography color="textSecondary">
+                        {t('cardTimestamp')}:
                         {task.timestamp}
                     </Typography>
                     <Typography color="textSecondary">
+                        {t('cardEstimation')}:
                         {task.estimation}
                     </Typography>
                 </CardContent>

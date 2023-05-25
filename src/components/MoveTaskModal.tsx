@@ -32,8 +32,8 @@ const MoveTaskModal = ({open, project, taskId, handleCloseMoveTaskModal, sprintI
         setSelectedType(event.target.value);
     };
 
-    const handleMoveTaskModalSubmit = (event) => {
-        e.preventDefault()
+    const handleMoveTaskModalSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault()
         if (location.pathname.includes('sprint') && selectedType !== 'backlog') {
             dispatch(moveTask({
                 projectId: project.id,

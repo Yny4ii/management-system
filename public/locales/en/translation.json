@@ -12,8 +12,13 @@
   "cardTitle" : "Title",
   "cardDescription" : "Description",
   "cardTimestamp": "Timestamp",
+  "cardEstimation": "Estimation",
   "editProjectFormTitle" : "Editing a project",
   "editTaskFormTitle" : "Editing a task",
   "editSprintFormTitle" : "Editing a sprint",
-  "moveTaskFormTitle" : "Move a task"
+  "moveTaskFormTitle" : "Move a task",
+  "inputSortBy" : "Sort by:",
+  "inputSortByDate" : "Date",
+  "inputSortByTitle" : "Title",
+  "inputSortByEstimation" : "Estimation"
 }

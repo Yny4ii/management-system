@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {ChangeEvent, useEffect, useState} from 'react';
 import {Button, Container, Grid, TextField} from "@mui/material";
 import ProjectForm, {IFormValues} from "../components/ProjectForm";
 import {addProject} from "../redux/slices/projectsSlice";
@@ -19,11 +19,11 @@ function HomePage() {
         setFilteredProjects(project.filter(project => project.id.toString().includes(searchTerm) || project.title.toLowerCase().includes(searchTerm.toLowerCase())));
     }, [project])
 
-    const handleSearchChange = (event) => {
+    const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
         setSearchTerm(event.target.value);
     };
 
-    const handleSearchSubmit = (event) => {
+    const handleSearchSubmit = (event: React.FormEvent) => {
         event.preventDefault();
         setFilteredProjects(project.filter(project => project.id.toString().includes(searchTerm) || project.title.toLowerCase().includes(searchTerm.toLowerCase())));
     };

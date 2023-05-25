@@ -1,22 +1,25 @@
 import React, {useEffect, useState} from "react";
-import {Container, FormControl, Grid, InputLabel, MenuItem, Select} from "@mui/material";
+import {Container, FormControl, Grid, InputLabel, MenuItem, Select, SelectChangeEvent} from "@mui/material";
 import TaskForm from "../components/TaskForm";
 import {useParams} from "react-router-dom";
 import TaskCard from "../components/TaskCard";
 import {IFormValues} from "../components/ProjectForm";
 import {useAppDispatch, useAppSelector} from "../hooks/hooks";
 import {addTask} from "../redux/slices/projectsSlice";
+import {Task} from "../interfaces/Task";
+import {useTranslation} from "react-i18next";
 
 const BacklogPage = () => {
+    const {t} = useTranslation()
     const {projectId} = useParams();
     const dispatch = useAppDispatch()
     const project = useAppSelector(state => state.project.find(project => project.id === projectId))
     const [tasks, setTasks] = useState(project.backlog.slice())
     const [sortType, setSortType] = useState("title");
 
-    const sortTasks = (a, b) => {
+    const sortTasks = (a:Task, b:Task) => {
         if (sortType === "estimate") {
-            return a.storyPoints - b.storyPoints;
+            return +a.estimation - +b.estimation;
         } else if (sortType === "title") {
             return a.title.localeCompare(b.title);
         } else {
@@ -35,7 +38,7 @@ const BacklogPage = () => {
     }
 
 
-    const handleSortChange = (event) => {
+    const handleSortChange = (event:SelectChangeEvent) => {
         setSortType(event.target.value);
     };
 
@@ -43,11 +46,11 @@ const BacklogPage = () => {
         <Container>
             <TaskForm onSubmit={handleTaskFormSubmit}/>
             <FormControl sx={{marginY: '1rem'}}>
-                <InputLabel>Sort by</InputLabel>
+                <InputLabel>{t('inputSortBy')}</InputLabel>
                 <Select value={sortType} onChange={handleSortChange}>
-                    <MenuItem value="timestamp">Date created</MenuItem>
-                    <MenuItem value="estimate">Story points</MenuItem>
-                    <MenuItem value="title">Title</MenuItem>
+                    <MenuItem value="timestamp">{t('inputSortByDate')}</MenuItem>
+                    <MenuItem value="estimate">{t('inputSortByEstimation')}</MenuItem>
+                    <MenuItem value="title">{t('inputSortByTitle')}</MenuItem>
                 </Select>
             </FormControl>
             <Grid container spacing={3}>
