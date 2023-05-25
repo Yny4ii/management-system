@@ -29,7 +29,7 @@ function ProjectPage() {
                     </Link>
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                    {project && project.sprints.map(sprint => (
+                    {projectId && project && project.sprints.map(sprint => (
                         <SprintCard sprint={sprint} projectId={projectId}/>
                     ))}
                 </Grid>

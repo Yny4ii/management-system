@@ -1,7 +1,7 @@
 import {Project} from "../../interfaces/Project";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {Category} from "../../interfaces/Category";
-import {saveToLocalStorage} from "../../hooks/sateToLocalStorage";
+import {saveToLocalStorage} from "../../hooks/saveToLocalStorage";
 import {loadFromLocalStorage} from "../../hooks/loadFromLocalStorage";
 
 

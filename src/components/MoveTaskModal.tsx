@@ -1,5 +1,15 @@
 import React, {useState} from 'react';
-import {Button, Dialog, DialogActions, DialogContent, DialogTitle, InputLabel, MenuItem, Select} from "@mui/material";
+import {
+    Button,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogTitle,
+    InputLabel,
+    MenuItem,
+    Select,
+    SelectChangeEvent
+} from "@mui/material";
 import {Project} from "../interfaces/Project";
 import {useAppDispatch} from "../hooks/hooks";
 import {Category} from "../interfaces/Category";
@@ -22,13 +32,13 @@ const MoveTaskModal = ({open, project, taskId, handleCloseMoveTaskModal, sprintI
 
     const [category, setCategory] = useState<Category>('todo');
 
-    const handleCategoryChange = (event) => {
-        setCategory(event.target.value);
+    const handleCategoryChange = (event: SelectChangeEvent) => {
+        setCategory(event.target.value as Category);
     };
 
     const [selectedType, setSelectedType] = useState('backlog');
 
-    const handleTypeChange = (event) => {
+    const handleTypeChange = (event: SelectChangeEvent) => {
         setSelectedType(event.target.value);
     };
 
@@ -40,7 +50,7 @@ const MoveTaskModal = ({open, project, taskId, handleCloseMoveTaskModal, sprintI
                 taskId,
                 sprintIdFrom: sprintId,
                 sprintIdTo: selectedType,
-                category
+                category: category
             }));
         } else if (selectedType === 'backlog') {
             dispatch(moveTask({projectId: project.id, taskId, sprintIdFrom: sprintId, category, fromBacklog: false}));

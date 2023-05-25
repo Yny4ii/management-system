@@ -14,7 +14,7 @@ const BacklogPage = () => {
     const {projectId} = useParams();
     const dispatch = useAppDispatch()
     const project = useAppSelector(state => state.project.find(project => project.id === projectId))
-    const [tasks, setTasks] = useState(project.backlog.slice())
+    const [tasks, setTasks] = useState(project?.backlog.slice())
     const [sortType, setSortType] = useState("title");
 
     const sortTasks = (a:Task, b:Task) => {
@@ -28,7 +28,7 @@ const BacklogPage = () => {
     };
 
     useEffect(() => {
-        const sortedTasks = project.backlog.slice().sort(sortTasks)
+        const sortedTasks = project?.backlog.slice().sort(sortTasks)
         setTasks(sortedTasks)
     }, [project, sortType])
 
@@ -55,7 +55,7 @@ const BacklogPage = () => {
             </FormControl>
             <Grid container spacing={3}>
                 {
-                    tasks.sort(sortTasks).map(task => (
+                    tasks?.sort(sortTasks).map(task => (
                         <Grid key={task.id} item xs={12} sm={6} md={4}>
                             <TaskCard task={task}/>
                         </Grid>

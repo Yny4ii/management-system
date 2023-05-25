@@ -39,8 +39,9 @@ const TaskCard = ({task}: ITaskProps) => {
         <>
             <EditTaskModal open={modalEditIsOpen} task={task} handleCloseTaskModal={handleCloseEditTaskModal}
                            onSubmit={handleEditProjectSubmit}/>
-            <MoveTaskModal taskId={task.id} project={project} sprintId={sprintId}
+            {project && sprintId && <MoveTaskModal taskId={task.id} project={project} sprintId={sprintId}
                            handleCloseMoveTaskModal={handleCloseMoveTaskModal} open={modalMoveTaskIsOpen}/>
+            }
             <Card>
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">

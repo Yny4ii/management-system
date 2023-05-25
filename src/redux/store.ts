@@ -1,6 +1,6 @@
 import {configureStore} from "@reduxjs/toolkit";
 import projectReducer from './slices/projectsSlice'
-import {saveToLocalStorage} from "../hooks/sateToLocalStorage";
+import {saveToLocalStorage} from "../hooks/saveToLocalStorage";
 import {loadFromLocalStorage} from "../hooks/loadFromLocalStorage";
 
 const persistedState = loadFromLocalStorage()

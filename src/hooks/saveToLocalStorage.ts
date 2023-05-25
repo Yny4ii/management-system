@@ -1,5 +1,4 @@
-import {Project} from "../interfaces/Project";
-
+// @ts-ignore
 export const saveToLocalStorage = (state) => {
     try {
         const serialisedState = JSON.stringify(state);
