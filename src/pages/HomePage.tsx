@@ -4,9 +4,12 @@ import ProjectForm, {IFormValues} from "../components/ProjectForm";
 import {addProject} from "../redux/slices/projectsSlice";
 import {useAppDispatch, useAppSelector} from "../hooks/hooks";
 import ProjectCard from "../components/ProjectCard";
+import {useTranslation} from "react-i18next";
 
 
 function HomePage() {
+    const {t} = useTranslation()
+
     const dispatch = useAppDispatch();
     const {project} = useAppSelector(state => state);
     const [searchTerm, setSearchTerm] = useState('');
@@ -36,10 +39,10 @@ function HomePage() {
             <Grid container spacing={3}>
                 <Grid item xs={12}>
                     <form onSubmit={handleSearchSubmit} style={{display: 'flex', marginTop: '1rem'}}>
-                        <TextField label="Search" variant="outlined" size="small" fullWidth value={searchTerm}
+                        <TextField label={t('searchInputPlaceholder')} variant="outlined" size="small" fullWidth value={searchTerm}
                                    onChange={handleSearchChange}/>
                         <Button type="submit" variant="contained" color="primary"
-                                style={{marginLeft: '1rem'}}>Find</Button>
+                                style={{marginLeft: '1rem'}}>{t("findButtonTitle")}</Button>
                     </form>
                 </Grid>
                 {filteredProjects.map(project => (

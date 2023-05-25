@@ -5,6 +5,7 @@ import {useAppDispatch} from "../hooks/hooks";
 import {Category} from "../interfaces/Category";
 import {moveTask} from "../redux/slices/projectsSlice";
 import {useLocation} from "react-router-dom";
+import {useTranslation} from "react-i18next";
 
 interface IMoveTaskModalProps {
     open: boolean;
@@ -17,6 +18,7 @@ interface IMoveTaskModalProps {
 const MoveTaskModal = ({open, project, taskId, handleCloseMoveTaskModal, sprintId}: IMoveTaskModalProps) => {
     const dispatch = useAppDispatch()
     const location = useLocation()
+    const {t} = useTranslation()
 
     const [category, setCategory] = useState<Category>('todo');
 
@@ -30,7 +32,7 @@ const MoveTaskModal = ({open, project, taskId, handleCloseMoveTaskModal, sprintI
         setSelectedType(event.target.value);
     };
 
-    const handleMoveTaskModalSubmit = (e) => {
+    const handleMoveTaskModalSubmit = (event) => {
         e.preventDefault()
         if (location.pathname.includes('sprint') && selectedType !== 'backlog') {
             dispatch(moveTask({
@@ -57,7 +59,7 @@ const MoveTaskModal = ({open, project, taskId, handleCloseMoveTaskModal, sprintI
 
     return (
         <Dialog open={open} onClose={handleCloseMoveTaskModal}>
-            <DialogTitle>Переместить таску</DialogTitle>
+            <DialogTitle>{t('moveTaskFormTitle')}</DialogTitle>
             <form onSubmit={handleMoveTaskModalSubmit}>
                 <DialogContent>
                     <InputLabel id="type-label">Type</InputLabel>
@@ -81,10 +83,10 @@ const MoveTaskModal = ({open, project, taskId, handleCloseMoveTaskModal, sprintI
                 </DialogContent>
                 <DialogActions>
                     <Button color="primary" onClick={handleCloseMoveTaskModal} type='button'>
-                        Отмена
+                        {t('cancelButtonTitle')}
                     </Button>
                     <Button color="primary" type='submit'>
-                        Переместить
+                        {t('moveButtonTitle')}
                     </Button>
                 </DialogActions>
             </form>

@@ -3,6 +3,7 @@ import {Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField} fr
 import {useForm} from "react-hook-form";
 import {IFormValues} from "./ProjectForm";
 import {Sprint} from "../interfaces/Sprint";
+import {useTranslation} from "react-i18next";
 
 export interface IEditSprintModalValues {
     title: string,
@@ -18,7 +19,7 @@ interface IEditSprintModalProps {
 }
 
 const EditSprintModal = ({sprint, open, handleCloseTaskModal, onSubmit}: IEditSprintModalProps) => {
-
+    const {t} = useTranslation()
     const form = useForm<IFormValues>({
         defaultValues: {
             title: sprint.title,
@@ -36,17 +37,17 @@ const EditSprintModal = ({sprint, open, handleCloseTaskModal, onSubmit}: IEditSp
 
     return (
         <Dialog open={open} onClose={handleCloseTaskModal}>
-            <DialogTitle>Редактирование проекта</DialogTitle>
+            <DialogTitle>{t('editSprintFormTitle')}</DialogTitle>
             <form onSubmit={handleSubmit(handleSave)}
                   style={{display: "flex", flexDirection: "column", gap: '1rem'}}>
                 <DialogContent sx={{display: 'flex', flexDirection: 'column', gap: '1rem'}}>
                     <TextField
-                        label="Title"
+                        label={t('cardTitle')}
                         required
                         {...register("title")}
                     />
                     <TextField
-                        label="Description"
+                        label={t('cardDescription')}
                         required
                         {...register("description")}
                     />
@@ -58,10 +59,10 @@ const EditSprintModal = ({sprint, open, handleCloseTaskModal, onSubmit}: IEditSp
                 </DialogContent>
                 <DialogActions>
                     <Button color="primary" onClick={handleCloseTaskModal} type='button'>
-                        Отмена
+                        {t('cancelButtonTitle')}
                     </Button>
                     <Button color="primary" type='submit'>
-                        Сохранить
+                        {t('saveButtonTitle')}
                     </Button>
                 </DialogActions>
             </form>

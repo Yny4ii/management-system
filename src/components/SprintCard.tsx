@@ -5,6 +5,7 @@ import {Sprint} from "../interfaces/Sprint";
 import {useAppDispatch} from "../hooks/hooks";
 import {deleteSprint, updateSprint} from "../redux/slices/projectsSlice";
 import EditSprintModal from "./EditSprintModal";
+import {useTranslation} from "react-i18next";
 
 interface ISprintCardProps {
     sprint: Sprint;
@@ -12,6 +13,7 @@ interface ISprintCardProps {
 }
 
 const SprintCard = ({sprint, projectId}: ISprintCardProps) => {
+    const {t} = useTranslation()
     const dispatch = useAppDispatch()
     const [modalIsOpen, setModalIsOpen] = useState(false)
 
@@ -33,22 +35,25 @@ const SprintCard = ({sprint, projectId}: ISprintCardProps) => {
             <EditSprintModal sprint={sprint} handleCloseTaskModal={handleCloseSprintModal} open={modalIsOpen}
                              onSubmit={handleEditSprintSubmit}/>
             <Card key={sprint.id}>
-                <CardActionArea>
                     <Link to={`/project/${projectId}/sprint/${sprint.id}`}>
                         <CardContent>
                             <Typography gutterBottom variant="h5" component="h2">
+                                {t('cardTitle')}:
                                 {sprint.title}
                             </Typography>
                             <Typography variant="body2" color="textSecondary" component="p">
+                                {t('cardDescription')}:
                                 {sprint.description}
                             </Typography>
                             <Typography color="textSecondary">
+                                {t('cardTimestamp')}:
                                 {sprint.timestamp}
                             </Typography>
                         </CardContent>
                     </Link>
-                    <Button type="button" onClick={() => setModalIsOpen(true)}>Редактировать</Button>
-                    <Button type="button" onClick={handleDeleteSprint}>Удалить</Button>
+                <CardActionArea>
+                    <Button type="button" onClick={() => setModalIsOpen(true)}>{t('editButtonTitle')}</Button>
+                    <Button type="button" onClick={handleDeleteSprint}>{t('deleteButtonTitle')}</Button>
                 </CardActionArea>
             </Card>
         </>

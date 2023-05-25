@@ -1,0 +1,20 @@
+{
+  "editButtonTitle" : "Редактировать",
+  "deleteButtonTitle" : "Удалить",
+  "createButtonTitle" : "Создать",
+  "findButtonTitle" : "Найти",
+  "moveButtonTitle" : "Переместить",
+  "cancelButtonTitle" : "Отменить",
+  "saveButtonTitle" : "Сохранить",
+  "searchInputPlaceholder" : "Поиск...",
+  "descriptionInputPlaceholder" : "Поиск...",
+  "titlePlaceholder" : "Поиск...",
+  "cardTitle" : "Название",
+  "cardDescription" : "Описание",
+  "cardTimestamp": "Срок",
+  "editProjectFormTitle" : "Редактирование проекта",
+  "editTaskFormTitle" : "Редактирование задачи",
+  "editSprintFormTitle" : "Редактирование спринта",
+  "moveTaskFormTitle" : "Переместить задачу"
+
+}

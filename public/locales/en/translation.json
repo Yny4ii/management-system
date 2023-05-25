@@ -1,0 +1,19 @@
+{
+  "editButtonTitle" : "Edit",
+  "deleteButtonTitle" : "Delete",
+  "createButtonTitle" : "Create",
+  "findButtonTitle" : "Find",
+  "moveButtonTitle" : "Move",
+  "cancelButtonTitle" : "Cancel",
+  "saveButtonTitle" : "Save",
+  "searchInputPlaceholder" : "Search...",
+  "descriptionInputPlaceholder" : "Search...",
+  "titlePlaceholder" : "Search...",
+  "cardTitle" : "Title",
+  "cardDescription" : "Description",
+  "cardTimestamp": "Timestamp",
+  "editProjectFormTitle" : "Editing a project",
+  "editTaskFormTitle" : "Editing a task",
+  "editSprintFormTitle" : "Editing a sprint",
+  "moveTaskFormTitle" : "Move a task"
+}

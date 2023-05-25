@@ -1,5 +1,6 @@
 import {Button, FormControlLabel, Radio, RadioGroup, TextField} from "@mui/material";
 import {useForm} from "react-hook-form";
+import {useTranslation} from "react-i18next";
 
 type FormType = 'project' | 'sprint' | 'task';
 
@@ -17,6 +18,7 @@ export interface IFormValues {
 
 
 const ProjectForm = ({onSubmit, type}: IProjectFormProps) => {
+    const {t} = useTranslation()
 
     const form = useForm<IFormValues>({
         defaultValues: {
@@ -31,12 +33,12 @@ const ProjectForm = ({onSubmit, type}: IProjectFormProps) => {
     return (
         <form onSubmit={handleSubmit(onSubmit)} style={{display: "flex", flexDirection: "column", gap: '1rem'}}>
             <TextField
-                label="Title"
+                label={t('cardTitle')}
                 required
                 {...register("title")}
             />
             <TextField
-                label="Description"
+                label={t('cardDescription')}
                 required
                 {...register("description")}
             />
@@ -97,7 +99,7 @@ const ProjectForm = ({onSubmit, type}: IProjectFormProps) => {
                     label="5"
                 />
             </RadioGroup>)}
-            <Button type="submit" variant="contained" color="primary">Create</Button>
+            <Button type="submit" variant="contained" color="primary">{t("createButtonTitle")}</Button>
         </form>
     );
 };

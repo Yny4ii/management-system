@@ -5,12 +5,14 @@ import EditProjectModal from "./EditProjectModal";
 import {Project} from "../interfaces/Project";
 import {deleteProject, updateProject} from "../redux/slices/projectsSlice";
 import {useAppDispatch} from "../hooks/hooks";
+import {useTranslation} from "react-i18next";
 
 interface IProjectCardProps {
     project: Project,
 }
 
 const ProjectCard = ({project}: IProjectCardProps) => {
+    const {t} = useTranslation()
     const dispatch = useAppDispatch()
     const [modalIsOpen, setModalIsOpen] = useState(false)
 
@@ -30,19 +32,18 @@ const ProjectCard = ({project}: IProjectCardProps) => {
         <> <EditProjectModal open={modalIsOpen} project={project} handleCloseProjectModal={handleCloseProjectModal}
                              onSubmit={handleEditProjectSubmit}/>
             <Card>
-                <CardActionArea>
                     <Link to={`/project/${project.id}`}>
                         <CardContent>
                             <Typography gutterBottom variant="h5" component="h2">
-                                Title:
+                                {t('cardTitle')}:
                                 {project.title}
                             </Typography>
                             <Typography variant="body2" color="textSecondary" component="p">
-                                Description:
+                                {t('cardDescription')}:
                                 {project.description}
                             </Typography>
                             <Typography variant="body2" color="textSecondary">
-                                Timestamp:
+                                {t('cardTimestamp')}:
                                 {project.timestamp}
                             </Typography>
                             <Typography variant="caption" color="textSecondary">
@@ -51,8 +52,9 @@ const ProjectCard = ({project}: IProjectCardProps) => {
                             </Typography>
                         </CardContent>
                     </Link>
-                    <Button type="button" onClick={() => setModalIsOpen(true)}>Редактировать</Button>
-                    <Button type="button" onClick={handleDeleteProject}>Удалить</Button>
+                <CardActionArea>
+                    <Button type="button" onClick={() => setModalIsOpen(true)}>{t('editButtonTitle')}</Button>
+                    <Button type="button" onClick={handleDeleteProject}>{t('deleteButtonTitle')}</Button>
                 </CardActionArea>
             </Card>
         </>

@@ -6,12 +6,14 @@ import {deleteTask, updateTask} from "../redux/slices/projectsSlice";
 import EditTaskModal from "./EditTaskModal";
 import {Task} from "../interfaces/Task";
 import MoveTaskModal from "./MoveTaskModal";
+import {useTranslation} from "react-i18next";
 
 interface ITaskProps {
     task: Task
 }
 
 const TaskCard = ({task}: ITaskProps) => {
+    const {t} = useTranslation()
     const dispatch = useAppDispatch()
     const [modalEditIsOpen, setModalEditIsOpen] = useState(false);
     const [modalMoveTaskIsOpen, setModalMoveTaskIsOpen] = useState(false);
@@ -25,35 +27,44 @@ const TaskCard = ({task}: ITaskProps) => {
         setModalMoveTaskIsOpen(false)
     }
 
+    const handleCloseEditTaskModal = () => {
+        setModalEditIsOpen(false)
+    }
+
     const handleEditProjectSubmit = (task: Task) => {
         dispatch(updateTask(task))
     }
 
     return (
         <>
-            <EditTaskModal open={modalEditIsOpen} task={task} handleCloseTaskModal={handleCloseMoveTaskModal}
+            <EditTaskModal open={modalEditIsOpen} task={task} handleCloseTaskModal={handleCloseEditTaskModal}
                            onSubmit={handleEditProjectSubmit}/>
-            <MoveTaskModal taskId={task.id} project={project} sprintId={sprintId} handleCloseMoveTaskModal={handleCloseMoveTaskModal} open={modalMoveTaskIsOpen}/>
+            <MoveTaskModal taskId={task.id} project={project} sprintId={sprintId}
+                           handleCloseMoveTaskModal={handleCloseMoveTaskModal} open={modalMoveTaskIsOpen}/>
             <Card>
+                <CardContent>
+                    <Typography gutterBottom variant="h5" component="h2">
+                        {task.title}
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary" component="p">
+                        {task.description}
+                    </Typography>
+                    <Typography color="textSecondary">
+                        {task.timestamp}
+                    </Typography>
+                    <Typography color="textSecondary">
+                        {task.estimation}
+                    </Typography>
+                </CardContent>
                 <CardActionArea>
-                    <CardContent>
-                        <Typography gutterBottom variant="h5" component="h2">
-                            {task.title}
-                        </Typography>
-                        <Typography variant="body2" color="textSecondary" component="p">
-                            {task.description}
-                        </Typography>
-                        <Typography color="textSecondary">
-                            {task.timestamp}
-                        </Typography>
-                        <Typography color="textSecondary">
-                            {task.estimation}
-                        </Typography>
-                    </CardContent>
+                    <Button type='button' onClick={() => {
+                        setModalMoveTaskIsOpen(true)
+                    }}>{t('moveButtonTitle')}</Button>
+                    <Button type='button' onClick={() => {
+                        setModalEditIsOpen(true)
+                    }}>{t('editButtonTitle')}</Button>
+                    <Button type='button' onClick={handleDeleteTask}>{t('deleteButtonTitle')}</Button>
                 </CardActionArea>
-                <Button onClick={()=>{setModalMoveTaskIsOpen(true)}}>Переместить</Button>
-                <Button onClick={()=>{setModalEditIsOpen(true)}}>Редактировать</Button>
-                <Button onClick={handleDeleteTask}>Удалить</Button>
             </Card>
         </>
     );
