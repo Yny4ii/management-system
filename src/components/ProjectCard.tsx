@@ -36,7 +36,6 @@ const ProjectCard = ({ project }: IProjectCardProps) => {
 
   return (
     <>
-      {" "}
       <EditProjectModal
         open={modalIsOpen}
         project={project}
