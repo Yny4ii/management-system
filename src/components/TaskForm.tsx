@@ -1,104 +1,100 @@
-import {Button, FormControlLabel, Radio, RadioGroup, TextField} from "@mui/material";
-import {useForm} from "react-hook-form";
-import {useTranslation} from "react-i18next";
-
+import {
+  Button,
+  FormControlLabel,
+  Radio,
+  RadioGroup,
+  TextField,
+} from "@mui/material";
+import { Controller, useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 
 interface ITaskFormProps {
-    onSubmit: (data: IFormValues) => void;
+  onSubmit: (data: IFormValues) => void;
 }
 
 export interface IFormValues {
-    title: string,
-    description: string,
-    timestamp: string;
-    estimation: string;
+  title: string;
+  description: string;
+  timestamp: string;
+  estimation: string;
 }
 
+const TaskForm = ({ onSubmit }: ITaskFormProps) => {
+  const { t } = useTranslation();
+  const form = useForm<IFormValues>({
+    defaultValues: {
+      title: "",
+      description: "",
+      timestamp: new Date().toISOString(),
+      estimation: "",
+    },
+  });
+  const { handleSubmit, control } = form;
 
-const TaskForm = ({onSubmit}: ITaskFormProps) => {
-    const {t} = useTranslation()
-    const form = useForm<IFormValues>({
-        defaultValues: {
-            title: "",
-            description: "",
-            timestamp: new Date().toISOString().slice(0, -8),
-            estimation: ''
-        }
-    })
-    const {register, handleSubmit} = form;
-
-    return (
-        <form onSubmit={handleSubmit(onSubmit)} style={{display: "flex", flexDirection: "column", gap: '1rem'}}>
-            <TextField
-                label={t('cardTitle')}
-                required
-                {...register("title")}
+  return (
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
+    >
+      <Controller
+        name="title"
+        control={control}
+        render={({ field }) => (
+          <TextField {...field} label={t("cardTitle")} required />
+        )}
+      />
+      <Controller
+        name="description"
+        control={control}
+        render={({ field }) => (
+          <TextField {...field} label={t("cardDescription")} required />
+        )}
+      />
+      <Controller
+        name="description"
+        control={control}
+        render={({ field }) => (
+          <TextField type="datetime-local" {...field} required />
+        )}
+      />
+      <Controller
+        name="estimation"
+        control={control}
+        render={({ field }) => (
+          <RadioGroup row {...field}>
+            <FormControlLabel
+              value="1"
+              control={<Radio required />}
+              label="1"
             />
-            <TextField
-                label={t('cardDescription')}
-                required
-                {...register("description")}
+            <FormControlLabel
+              value="2"
+              control={<Radio required />}
+              label="2"
             />
-            <TextField
-                type="datetime-local"
-                required
-                {...register("timestamp")}
+            <FormControlLabel
+              value="3"
+              control={<Radio required />}
+              label="3"
             />
-            <RadioGroup row name="estimation">
-                <FormControlLabel
-                    value="1"
-                    control={
-                        <Radio
-                            {...register("estimation")}
-                            required
-                        />
-                    }
-                    label="1"
-                />
-                <FormControlLabel
-                    value="2"
-                    control={
-                        <Radio
-                            {...register("estimation")}
-                            required
-                        />
-                    }
-                    label="2"
-                />
-                <FormControlLabel
-                    value="3"
-                    control={
-                        <Radio
-                            {...register("estimation")}
-                            required
-                        />
-                    }
-                    label="3"
-                />
-                <FormControlLabel
-                    value="4"
-                    control={
-                        <Radio
-                            {...register("estimation")}
-                            required
-                        />
-                    }
-                    label="4"
-                />
-                <FormControlLabel
-                    value="5"
-                    control={
-                        <Radio
-                            {...register("estimation")}
-                            required
-                        />
-                    }
-                    label="5"
-                />
-            </RadioGroup>
-            <Button type="submit" variant="contained" color="primary">{t('createButtonTitle')}</Button>
-        </form>
-    );
+            <FormControlLabel
+              value="4"
+              control={<Radio required />}
+              label="4"
+            />
+            <FormControlLabel
+              value="5"
+              control={<Radio required />}
+              label="5"
+            />
+          </RadioGroup>
+        )}
+      />
+      <Button type="submit" variant="contained" color="primary">
+        {t("createButtonTitle")}
+      </Button>
+    </form>
+  );
 };
 
-export default TaskForm
+export default TaskForm;
