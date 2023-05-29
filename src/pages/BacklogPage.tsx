@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
 import {Container, FormControl, Grid, InputLabel, MenuItem, Select, SelectChangeEvent} from "@mui/material";
-import TaskForm from "../components/TaskForm";
+import AddForm from "../components/AddForm";
 import {useParams} from "react-router-dom";
 import TaskCard from "../components/TaskCard";
-import {IFormValues} from "../components/ProjectForm";
+import {IFormValues} from "../components/AddForm";
 import {useAppDispatch, useAppSelector} from "../hooks/hooks";
 import {addTask} from "../redux/slices/projectsSlice";
 import {Task} from "../interfaces/Task";
@@ -33,7 +33,7 @@ const BacklogPage = () => {
     }, [project, sortType])
 
     const handleTaskFormSubmit = (data: IFormValues) => {
-        const task = {...data, id: Math.random().toString(), projectId: projectId}
+        const task = {title: data.title, description: data.description, estimation: data.estimation, id: Math.random().toString(), projectId: projectId}
         dispatch(addTask(task))
     }
 
@@ -44,7 +44,7 @@ const BacklogPage = () => {
 
     return (
         <Container>
-            <TaskForm onSubmit={handleTaskFormSubmit}/>
+            <AddForm onSubmit={handleTaskFormSubmit} type='task'/>
             <FormControl sx={{marginY: '1rem'}}>
                 <InputLabel>{t('inputSortBy')}</InputLabel>
                 <Select value={sortType} onChange={handleSortChange}>

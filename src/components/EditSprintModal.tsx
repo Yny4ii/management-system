@@ -1,7 +1,7 @@
 import React from 'react';
 import {Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField} from "@mui/material";
 import {useForm} from "react-hook-form";
-import {IFormValues} from "./ProjectForm";
+import {IFormValues} from "./AddForm";
 import {Sprint} from "../interfaces/Sprint";
 import {useTranslation} from "react-i18next";
 

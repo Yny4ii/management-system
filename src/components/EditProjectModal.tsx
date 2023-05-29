@@ -2,7 +2,7 @@ import React from 'react';
 import {Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField} from "@mui/material";
 import {Project} from "../interfaces/Project";
 import {useForm} from "react-hook-form";
-import {IFormValues} from "./ProjectForm";
+import {IFormValues} from "./AddForm";
 import {useTranslation} from "react-i18next";
 
 export interface IEditProjectModalValues {

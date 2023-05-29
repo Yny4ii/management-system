@@ -8,8 +8,11 @@ import {
 import { Controller, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
+type FormType = "project" | "sprint" | "task";
+
 interface ITaskFormProps {
   onSubmit: (data: IFormValues) => void;
+  type: FormType;
 }
 
 export interface IFormValues {
@@ -19,7 +22,7 @@ export interface IFormValues {
   estimation: string;
 }
 
-const TaskForm = ({ onSubmit }: ITaskFormProps) => {
+const AddForm = ({ onSubmit, type }: ITaskFormProps) => {
   const { t } = useTranslation();
   const form = useForm<IFormValues>({
     defaultValues: {
@@ -30,7 +33,6 @@ const TaskForm = ({ onSubmit }: ITaskFormProps) => {
     },
   });
   const { handleSubmit, control } = form;
-
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
@@ -51,45 +53,47 @@ const TaskForm = ({ onSubmit }: ITaskFormProps) => {
         )}
       />
       <Controller
-        name="description"
+        name="timestamp"
         control={control}
         render={({ field }) => (
           <TextField type="datetime-local" {...field} required />
         )}
       />
-      <Controller
-        name="estimation"
-        control={control}
-        render={({ field }) => (
-          <RadioGroup row {...field}>
-            <FormControlLabel
-              value="1"
-              control={<Radio required />}
-              label="1"
-            />
-            <FormControlLabel
-              value="2"
-              control={<Radio required />}
-              label="2"
-            />
-            <FormControlLabel
-              value="3"
-              control={<Radio required />}
-              label="3"
-            />
-            <FormControlLabel
-              value="4"
-              control={<Radio required />}
-              label="4"
-            />
-            <FormControlLabel
-              value="5"
-              control={<Radio required />}
-              label="5"
-            />
-          </RadioGroup>
-        )}
-      />
+      {type === "task" && (
+        <Controller
+          name="estimation"
+          control={control}
+          render={({ field }) => (
+            <RadioGroup row {...field}>
+              <FormControlLabel
+                value="1"
+                control={<Radio required />}
+                label="1"
+              />
+              <FormControlLabel
+                value="2"
+                control={<Radio required />}
+                label="2"
+              />
+              <FormControlLabel
+                value="3"
+                control={<Radio required />}
+                label="3"
+              />
+              <FormControlLabel
+                value="4"
+                control={<Radio required />}
+                label="4"
+              />
+              <FormControlLabel
+                value="5"
+                control={<Radio required />}
+                label="5"
+              />
+            </RadioGroup>
+          )}
+        />
+      )}
       <Button type="submit" variant="contained" color="primary">
         {t("createButtonTitle")}
       </Button>
@@ -97,4 +101,4 @@ const TaskForm = ({ onSubmit }: ITaskFormProps) => {
   );
 };
 
-export default TaskForm;
+export default AddForm;
