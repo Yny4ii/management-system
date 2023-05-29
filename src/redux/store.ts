@@ -1,18 +1,18 @@
-import {configureStore} from "@reduxjs/toolkit";
-import projectReducer from './slices/projectsSlice'
-import {saveToLocalStorage} from "../hooks/saveToLocalStorage";
-import {loadFromLocalStorage} from "../hooks/loadFromLocalStorage";
+import { configureStore } from "@reduxjs/toolkit";
+import projectReducer from "./slices/projectsSlice";
+import { saveToLocalStorage } from "../hooks/saveToLocalStorage";
+import { loadFromLocalStorage } from "../hooks/loadFromLocalStorage";
 
-const persistedState = loadFromLocalStorage()
+const persistedState = loadFromLocalStorage();
 export const store = configureStore({
-    reducer: {
-        project: projectReducer,
-        preloadState: persistedState
-    }
-})
+  reducer: {
+    project: projectReducer,
+    preloadState: persistedState,
+  },
+});
 store.subscribe(() => {
-    saveToLocalStorage(store.getState())
-})
+  saveToLocalStorage(store.getState());
+});
 export default store;
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

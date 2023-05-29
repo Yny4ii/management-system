@@ -1,1 +1,1 @@
-export type Category = 'todo' | 'doing' | 'done'
+export type Category = "todo" | "doing" | "done";
