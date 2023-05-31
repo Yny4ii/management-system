@@ -10,8 +10,8 @@ import { Link } from "react-router-dom";
 import { Sprint } from "../interfaces/Sprint";
 import { useAppDispatch } from "../hooks/hooks";
 import { deleteSprint, updateSprint } from "../redux/slices/projectsSlice";
-import EditSprintModal from "./EditSprintModal";
 import { useTranslation } from "react-i18next";
+import EditModal, { IEditModalValues } from "./EditModal";
 
 interface ISprintCardProps {
   sprint: Sprint;
@@ -23,8 +23,12 @@ const SprintCard = ({ sprint, projectId }: ISprintCardProps) => {
   const dispatch = useAppDispatch();
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  const handleEditSprintSubmit = (sprint: Sprint) => {
-    dispatch(updateSprint(sprint));
+  const handleEditSprintSubmit = (data: IEditModalValues) => {
+    const updatedSprint = {
+      ...sprint,
+      ...data,
+    };
+    dispatch(updateSprint(updatedSprint));
   };
 
   const handleCloseSprintModal = () => {
@@ -37,9 +41,10 @@ const SprintCard = ({ sprint, projectId }: ISprintCardProps) => {
 
   return (
     <>
-      <EditSprintModal
-        sprint={sprint}
-        handleCloseTaskModal={handleCloseSprintModal}
+      <EditModal
+        type="sprint"
+        object={sprint}
+        handleCloseEditModal={handleCloseSprintModal}
         open={modalIsOpen}
         onSubmit={handleEditSprintSubmit}
       />

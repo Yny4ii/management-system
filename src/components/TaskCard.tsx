@@ -9,7 +9,7 @@ import {
 import { useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../hooks/hooks";
 import { deleteTask, updateTask } from "../redux/slices/projectsSlice";
-import EditTaskModal from "./EditTaskModal";
+import EditModal, { IEditModalValues } from "./EditModal";
 import { Task } from "../interfaces/Task";
 import MoveTaskModal from "./MoveTaskModal";
 import { useTranslation } from "react-i18next";
@@ -39,17 +39,22 @@ const TaskCard = ({ task }: ITaskProps) => {
     setModalEditIsOpen(false);
   };
 
-  const handleEditProjectSubmit = (task: Task) => {
-    dispatch(updateTask(task));
+  const handleEditTaskSubmit = (data: IEditModalValues) => {
+    const updatedTask = {
+      ...task,
+      ...data,
+    };
+    dispatch(updateTask(updatedTask));
   };
 
   return (
     <>
-      <EditTaskModal
+      <EditModal
+        type="task"
         open={modalEditIsOpen}
-        task={task}
-        handleCloseTaskModal={handleCloseEditTaskModal}
-        onSubmit={handleEditProjectSubmit}
+        object={task}
+        handleCloseEditModal={handleCloseEditTaskModal}
+        onSubmit={handleEditTaskSubmit}
       />
       {project && sprintId && (
         <MoveTaskModal

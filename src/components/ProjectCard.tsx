@@ -7,11 +7,11 @@ import {
   Typography,
 } from "@mui/material";
 import { Link } from "react-router-dom";
-import EditProjectModal from "./EditProjectModal";
 import { Project } from "../interfaces/Project";
 import { deleteProject, updateProject } from "../redux/slices/projectsSlice";
 import { useAppDispatch } from "../hooks/hooks";
 import { useTranslation } from "react-i18next";
+import EditModal, { IEditModalValues } from "./EditModal";
 
 interface IProjectCardProps {
   project: Project;
@@ -26,8 +26,12 @@ const ProjectCard = ({ project }: IProjectCardProps) => {
     dispatch(deleteProject(project.id));
   };
 
-  const handleEditProjectSubmit = (project: Project) => {
-    dispatch(updateProject(project));
+  const handleEditProjectSubmit = (data: IEditModalValues) => {
+    const updatedProject = {
+      ...project,
+      ...data,
+    };
+    dispatch(updateProject(updatedProject));
   };
 
   const handleCloseProjectModal = () => {
@@ -36,10 +40,11 @@ const ProjectCard = ({ project }: IProjectCardProps) => {
 
   return (
     <>
-      <EditProjectModal
+      <EditModal
+        type="project"
         open={modalIsOpen}
-        project={project}
-        handleCloseProjectModal={handleCloseProjectModal}
+        object={project}
+        handleCloseEditModal={handleCloseProjectModal}
         onSubmit={handleEditProjectSubmit}
       />
       <Card>

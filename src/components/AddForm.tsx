@@ -8,7 +8,7 @@ import {
 import { Controller, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
-type FormType = "project" | "sprint" | "task";
+export type FormType = "project" | "sprint" | "task";
 
 interface ITaskFormProps {
   onSubmit: (data: IFormValues) => void;

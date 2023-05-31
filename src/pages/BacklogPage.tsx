@@ -8,10 +8,9 @@ import {
   Select,
   SelectChangeEvent,
 } from "@mui/material";
-import AddForm from "../components/AddForm";
+import AddForm, { IFormValues } from "../components/AddForm";
 import { useParams } from "react-router-dom";
 import TaskCard from "../components/TaskCard";
-import { IFormValues } from "../components/AddForm";
 import { useAppDispatch, useAppSelector } from "../hooks/hooks";
 import { addTask } from "../redux/slices/projectsSlice";
 import { Task } from "../interfaces/Task";
@@ -49,6 +48,7 @@ const BacklogPage = () => {
       estimation: data.estimation,
       id: Math.random().toString(),
       projectId: projectId,
+      timestamp: data.timestamp,
     };
     dispatch(addTask(task));
   };
