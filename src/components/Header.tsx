@@ -11,39 +11,35 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
 const Header = () => {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
   const changeLanguage = (language: string) => {
     i18n.changeLanguage(language);
   };
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{ mb: "1rem" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Link to="/">
-            <Typography
-              variant="h6"
-              noWrap
-              component="a"
-              sx={{
-                mr: 2,
-                display: { xs: "none", md: "flex" },
-                fontWeight: 700,
-                color: "inherit",
-              }}
-            >
-              App
-            </Typography>
-          </Link>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+          <Typography
+            variant="h6"
+            sx={{
+              mr: 2,
+              fontWeight: 700,
+              color: "inherit",
+              flexGrow: 1,
+            }}
+          >
+            <Link to="/">App</Link>
+          </Typography>
+          <Box sx={{ display: "flex" }}>
             <Button
               onClick={() => changeLanguage("ru")}
-              sx={{ my: 2, color: "white", display: "block" }}
+              sx={{ color: "white" }}
             >
               ru
             </Button>
             <Button
               onClick={() => changeLanguage("en")}
-              sx={{ my: 2, color: "white", display: "block" }}
+              sx={{ color: "white" }}
             >
               en
             </Button>

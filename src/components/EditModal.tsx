@@ -11,7 +11,7 @@ import {
   TextField,
 } from "@mui/material";
 import { Controller, useForm } from "react-hook-form";
-import { FormType } from "./AddForm";
+import { ObjectType } from "./AddForm";
 import { Task } from "../interfaces/Task";
 import { useTranslation } from "react-i18next";
 import { Sprint } from "../interfaces/Sprint";
@@ -25,7 +25,7 @@ export interface IEditModalValues {
 }
 
 interface IEditModalProps {
-  type: FormType;
+  type: ObjectType;
   open: boolean;
   object: Task | Project | Sprint;
   handleCloseEditModal: () => void;

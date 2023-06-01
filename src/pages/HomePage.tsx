@@ -52,7 +52,7 @@ function HomePage() {
   };
 
   return (
-    <Container maxWidth="lg">
+    <Container sx={{ minHeight: "100vh" }}>
       <AddForm onSubmit={handleProjectFormSubmit} type={"sprint"} />
       <Grid container spacing={3}>
         <Grid item xs={12}>

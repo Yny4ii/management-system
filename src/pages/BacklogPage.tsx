@@ -58,7 +58,7 @@ const BacklogPage = () => {
   };
 
   return (
-    <Container>
+    <Container sx={{ minHeight: "100vh" }}>
       <AddForm onSubmit={handleTaskFormSubmit} type="task" />
       <FormControl sx={{ marginY: "1rem" }}>
         <InputLabel>{t("inputSortBy")}</InputLabel>

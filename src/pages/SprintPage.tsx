@@ -12,7 +12,7 @@ const SprintPage = () => {
   );
   const sprint = project?.sprints.find((sprint) => sprint.id === sprintId);
   return (
-    <Container maxWidth="lg" style={{ marginTop: "2rem" }}>
+    <Container style={{ marginTop: "2rem", minHeight: "100vh" }}>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6} md={4}>
           <Paper>Todo</Paper>

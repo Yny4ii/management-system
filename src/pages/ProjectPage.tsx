@@ -28,9 +28,8 @@ function ProjectPage() {
   };
 
   return (
-    <Container maxWidth="lg">
+    <Container sx={{ minHeight: "100vh" }}>
       <AddForm onSubmit={handleSprintFormSubmit} type="sprint" />
-
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
           <Link to={`/project/${projectId}/backlog`}>

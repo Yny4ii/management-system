@@ -56,7 +56,7 @@ const TaskCard = ({ task }: ITaskProps) => {
         handleCloseEditModal={handleCloseEditTaskModal}
         onSubmit={handleEditTaskSubmit}
       />
-      {project && sprintId && (
+      {project &&  (
         <MoveTaskModal
           taskId={task.id}
           project={project}
